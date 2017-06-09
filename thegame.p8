@@ -784,10 +784,11 @@ end
 function _update()
 	foreach(actor, move_actor)		
 	foreach(sparkle, move_sparkle)
-	collisions()
-	move_spawns(player.x, player.y)
-	--shoot
 	foreach(bullets, move_bullet)
+	
+	collisions()
+	
+	move_spawns(player.x, player.y)
 	outgame_logic()
 	t=t+1
 	shooting_rate = shooting_rate + 1
