@@ -81,11 +81,9 @@ end
 function create_player(x, y, dir)
 	pl = create_actor(1, x, y, dir)
 	pl.hit_point = 5
-	pl.super  = 0
+	pl.ammo  = 0
 	pl.score  = 0
 	pl.bounce = 0
-	pl.delay  = 0
-	pl.pal    = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}
 	pl.shooting_rate = 0
 	pl.shooting_frame_rate = 0
 	return pl
@@ -255,7 +253,7 @@ function move_player(pl)
 	end
 	if (abs(pl.dx) < 0.1) then
 		if(pl.shooting) then
-			if(pl.super > 1) then
+			if(pl.ammo > 1) then
 				pl.frame = 75 + flr(pl.shooting_frame_rate)
 			else
 				pl.frame = 91 + flr(pl.shooting_frame_rate)
@@ -267,7 +265,7 @@ function move_player(pl)
 		end
 	else
 		if(pl.shooting) then
-			if(pl.super > 1) then
+			if(pl.ammo > 1) then
 				pl.frame = 123 + flr(pl.shooting_frame_rate)
 			else
 				pl.frame = 107 + flr(pl.shooting_frame_rate)
@@ -462,7 +460,7 @@ end
 
 --this is for player
 function shoot_right(actor,frame)
-	if(actor.super > 0) then
+	if(actor.ammo > 0) then
 		if(shooting_rate % 5 == 1 or actor.shooting_rate == 3) then
 			create_bullet(actor.x+0.9,actor.y,0,frame,0.50)
 			s=create_sparkle(actor.x+0.5, actor.y, 30, 9)
@@ -472,7 +470,7 @@ function shoot_right(actor,frame)
 			s.ddy = 0.01
 			sfx(10)
 			actor.shooting_rate = 0
-			actor.super-=1
+			actor.ammo-=1
 		end
 	end
 	if(actor.shooting_rate == 5) then
@@ -489,7 +487,7 @@ end
 
 --this is for player
 function shoot_left(actor,frame)
-	if(actor.super > 0) then
+	if(actor.ammo > 0) then
 		if(shooting_rate % 5 == 1 or actor.shooting_rate == 3) then
 			create_bullet(actor.x-0.9,actor.y,.50,frame,0.50)
 			s=create_sparkle(actor.x+0.5, actor.y, 30, 9)
@@ -499,7 +497,7 @@ function shoot_left(actor,frame)
 			s.ddy = 0.01 
 			sfx(10)
 			actor.shooting_rate = 0
-			actor.super-=1
+			actor.ammo-=1
 		end
 	end
 	if(actor.shooting_rate == 5) then
@@ -538,7 +536,7 @@ function collide_event(a1, a2)
 		if(a2.kind==2) then --pick up
 			-- heavy machine gun
 			if (a2.frame==84) then
-				a1.super = 100 --ammo
+				a1.ammo = 100 --ammo
 				ak47 = true
 				sfx(11)
 			end
@@ -1269,4 +1267,3 @@ __music__
 00 41414144
 00 41414144
 00 41414144
-
