@@ -5,4 +5,4 @@ Aim of the game is not to die, passing all the monsters and killing godfather th
 HAVE FUN!..
 
 # Getting Started
-You need to download the .html and .js file to same directory. Then you can just start the game by opening the .html in a browser.
+You need to download the .html and .js file to same directory. Then you can just start the game by opening the .html file in a browser.
